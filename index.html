@@ -96,14 +96,13 @@
 
         .password-box {
             display: flex;
-            gap: 10px;
             justify-content: center;
             align-items: center;
             margin-bottom: 10px;
         }
 
         input[type="password"] {
-            width: 70%;
+            width: 85%;
             padding: 12px;
             border: 1.5px solid rgba(255, 255, 255, 0.4);
             border-radius: 25px;
@@ -116,21 +115,6 @@
 
         input[type="password"]::placeholder {
             color: #ddd;
-        }
-
-        .submit-pass-btn {
-            background: #ff4b72;
-            color: #fff;
-            border: none;
-            padding: 12px 18px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .submit-pass-btn:hover {
-            background: #ff2a55;
         }
 
         #messageStep {
@@ -265,7 +249,7 @@
             color: #ff8fa3;
         }
 
-        /* صندوق الرسائل السرية في النهاية بصيغة المذكر */
+        /* صندوق الرسائل السرية في النهاية بصيغة المذكر ومع العبارات الجديدة */
         .secret-box {
             background: rgba(255, 105, 135, 0.15);
             border: 1px solid rgba(255, 105, 135, 0.4);
@@ -342,14 +326,13 @@
 <body>
 
     <div class="container">
-        <!-- 1. شاشة القفل -->
+        <!-- 1. شاشة القفل (دخول تلقائي بمجرد اكتمال الباسورد) -->
         <div id="lockScreen">
             <h2>لأغلى إنسان في عمري 🥰</h2>
             <div class="password-box">
-                <input type="password" id="passwordInput" placeholder="كلمة السر...">
-                <button class="submit-pass-btn" onclick="checkPassword()">دخول ➔</button>
+                <input type="password" id="passwordInput" placeholder="كلمة السر..." maxlength="7" oninput="checkPassword()">
             </div>
-            <p id="errorMsg" style="color: #ff8fa3; font-size: 12px; margin-top: 8px; display: none;">كلمة السر غير صحيحة، جرب مرة أخرى!</p>
+            <p id="errorMsg" style="color: #ff8fa3; font-size: 12px; margin-top: 8px; display: none;">كلمة السر غير صحيحة!</p>
         </div>
 
         <!-- 2. خطوة الرسالة -->
@@ -408,7 +391,7 @@
             <div class="memory-item"><img src="photo13.jpg" alt="Photo 13" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo14.jpg" alt="Photo 14" onclick="openLightbox(this.src)"></div>
 
-            <!-- صندوق الرسائل السرية في النهاية بصيغة المذكر -->
+            <!-- صندوق الرسائل السرية في النهاية مع العبارات الجديدة -->
             <div class="secret-box" onclick="showRandomSecret()">
                 <p style="font-size: 12px; color: #fff; font-weight: bold;">✨ اضغط هنا لمفاجأة سرية ✨</p>
                 <div id="secretMessage" class="secret-text">اضغط لاكتشاف رسالة حب جديدة..</div>
@@ -429,12 +412,14 @@
         const playIcon = document.getElementById('playIcon');
         const audioStatus = document.getElementById('audioStatus');
 
-        // الرسائل السرية بصيغة المذكر
+        // الرسائل السرية (شاملة العبارات الجديدة بصيغة المذكر)[cite: 4, 5, 6]
         const secrets = [
             "بحبك كأنك أماني الوحيد في الدنيا دي كلها ❤️",
             "أنت السند والحب اللي بتمنى أعيش معاه العمر كله ❤️",
             "يارب دايماً مع بعض في كل سنيننا الجاية ونكبر سوا وأحلامنا تتحقق 🥰",
-            "ضحكتك هي النور اللي بينور أيامي وبيمسح أي تعب 🌸"
+            "ضحكتك هي النور اللي بينور أيامي وبيمسح أي تعب 🌸",
+            "وفي قربك شيء يشبه الأمان، شيء يجعل القلب يختار البقاء دون أن يُطلب منه ذلك ❤️❤️",
+            "أنت الصاحب والحبيب، والحياة ♾️"
         ];
 
         function showRandomSecret() {
@@ -471,7 +456,6 @@
 
         function checkPassword() {
             let input = document.getElementById('passwordInput').value.trim();
-            // تحويل الأرقام العربية لو وجدت إلى إنجليزية
             input = input.replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d));
             
             const errorMsg = document.getElementById('errorMsg');
@@ -479,17 +463,12 @@
             if (input === correctPassword) {
                 document.getElementById('lockScreen').classList.add('hidden');
                 document.getElementById('messageStep').classList.remove('hidden');
-            } else {
+            } else if (input.length >= 7) {
                 errorMsg.style.display = "block";
+            } else {
+                errorMsg.style.display = "none";
             }
         }
-
-        // السماح بالدخول عبر الضغط على زر Enter من لوحة المفاتيح
-        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
-        });
 
         function togglePlay() {
             if (music.paused) {
