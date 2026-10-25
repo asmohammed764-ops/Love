@@ -15,7 +15,7 @@
         body {
             background: url('bg_lock.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: #4a3b32;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,11 +32,11 @@
         .container {
             width: 100%;
             max-width: 400px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border: 1px solid #d7ccc8;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             overflow: hidden;
             text-align: center;
             padding: 25px 20px;
@@ -52,7 +52,7 @@
         }
 
         h2 {
-            color: #5d4037;
+            color: #fff;
             margin-bottom: 20px;
             font-size: 20px;
         }
@@ -61,7 +61,7 @@
             font-family: 'Georgia', serif;
             font-style: italic;
             font-size: 26px;
-            color: #4e342e;
+            color: #fff;
             margin-bottom: 15px;
             letter-spacing: 1px;
         }
@@ -69,13 +69,18 @@
         input[type="password"] {
             width: 80%;
             padding: 12px;
-            border: 1.5px solid #a1887f;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
             border-radius: 25px;
             text-align: center;
             outline: none;
             font-size: 16px;
             margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        input[type="password"]::placeholder {
+            color: #ddd;
         }
 
         #messageStep {
@@ -83,16 +88,16 @@
         }
 
         .message-card {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(0, 0, 0, 0.6);
             border-radius: 20px;
             padding: 20px;
             margin: 15px 0;
-            border: 1px solid #d7ccc8;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             line-height: 2.2;
             text-align: right;
             font-size: 14px;
-            color: #4e342e;
+            color: #fff;
         }
 
         .fade-line {
@@ -116,26 +121,26 @@
         }
 
         .next-btn {
-            background: #fff;
-            color: #5d4037;
-            border: 1.5px solid #a1887f;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
             padding: 10px 30px;
             border-radius: 25px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
             transition: 0.3s;
             margin-top: 15px;
         }
 
         .next-btn:hover {
-            background: #f5f0ed;
+            background: rgba(255, 255, 255, 0.4);
         }
 
         .counter-box {
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid #d7ccc8;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 15px;
             padding: 15px;
             margin: 15px 0;
@@ -148,51 +153,48 @@
         }
 
         .time-unit {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.15);
             padding: 8px 12px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .time-num {
             font-size: 18px;
             font-weight: bold;
-            color: #5d4037;
+            color: #fff;
         }
 
         .time-label {
             font-size: 11px;
-            color: #8d6e63;
+            color: #ddd;
         }
 
         .custom-audio-player {
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid #d7ccc8;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 40px;
             padding: 8px 15px;
             margin: 15px 0;
-            box-shadow: 0 4px 15px rgba(109, 76, 65, 0.1);
             cursor: pointer;
             transition: 0.3s;
         }
 
         .custom-audio-player:hover {
-            background: #fff;
+            background: rgba(0, 0, 0, 0.7);
         }
 
         .play-btn-circle {
             width: 42px;
             height: 42px;
-            background: #883955;
+            background: #ff4b72;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
             font-size: 16px;
-            box-shadow: 0 2px 8px rgba(136, 57, 85, 0.3);
             flex-shrink: 0;
             margin-left: 12px;
         }
@@ -206,28 +208,38 @@
         .audio-title {
             font-size: 13px;
             font-weight: bold;
-            color: #5d4037;
+            color: #fff;
         }
 
         .audio-status {
             font-size: 11px;
-            color: #8d6e63;
+            color: #ddd;
         }
 
-        /* كارت الصور والفيديو نظيفة بدون كلام */
+        /* كارت الصور الداكن ونفس الستايل */
         .memory-item {
-            background: rgba(255, 255, 255, 0.85);
+            position: relative;
             border-radius: 15px;
-            padding: 10px;
+            overflow: hidden;
             margin-bottom: 15px;
-            border: 1px solid #d7ccc8;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
         }
 
-        .memory-item img, .memory-item video {
+        .memory-item img {
             width: 100%;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             display: block;
+        }
+
+        .memory-content {
+            margin-top: 8px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 15px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
     </style>
 </head>
@@ -238,13 +250,13 @@
         <div id="lockScreen">
             <h2>لأغلى شخص في عمري 🥰</h2>
             <input type="password" id="passwordInput" placeholder="كلمة السر..." oninput="checkPassword()">
-            <p id="errorMsg" style="color: #b71c1c; font-size: 12px; margin-top: 5px; display: none;">كلمة السر غير صحيحة!</p>
+            <p id="errorMsg" style="color: #ff8fa3; font-size: 12px; margin-top: 5px; display: none;">كلمة السر غير صحيحة!</p>
         </div>
 
-        <!-- 2. خطوة الرسالة -->
+        <!-- 2. خطوة الرسالة (بنفس الستايل الداكن المريح) -->
         <div id="messageStep" class="hidden">
             <div class="message-card">
-                <div class="fade-line" style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #5d4037; direction: ltr;">01/11/2026</div>
+                <div class="fade-line" style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #ff8fa3; direction: ltr;">01/11/2026</div>
                 <div class="fade-line">إلَى حَبِيبِي وَرَفِيقِ عُمْرِي ..</div>
                 <div class="fade-line">فِي يَوْمِ مِيلَادِكَ، أَتَمَنَّى لَكَ أَعْوَاماً مَلِيئَةً بِالْفَرَحِ، وَقَلْباً لَا يَعْرِفُ الْحُزْنَ، وَأَيَّاماً تُشْبِهُ جَمَالَ رُوحِكَ.</div>
                 <div class="fade-line">أَتَمَنَّى أَنْ تَبْقَى ضِحْكَتُكَ حَاضِرَةً، وَأَحْلَامُكَ حَقِيقَةً، وَأَنْ أَكُونَ دَائِماً جُزْءاً مِنْ سَعَادَتِكَ.</div>
@@ -254,19 +266,19 @@
             <button class="next-btn" onclick="goToMainContent()">next ➔</button>
         </div>
 
-        <!-- 3. الصفحة الرئيسية -->
+        <!-- 3. الصفحة الرئيسية (الصور بدون فيديو) -->
         <div id="mainContent" class="hidden">
             <div class="forever-title">✨ Forever ✨</div>
 
             <div class="counter-box">
-                <p style="font-size: 13px; font-weight: bold; color: #5d4037;">Since: 20 - 01 - 2025 ❤️</p>
+                <p style="font-size: 13px; font-weight: bold; color: #fff;">Since: 20 - 01 - 2025 ❤️</p>
                 <div class="timer">
                     <div class="time-unit"><div id="days" class="time-num">0</div><div class="time-label">يوم</div></div>
                     <div class="time-unit"><div id="hours" class="time-num">0</div><div class="time-label">ساعة</div></div>
                     <div class="time-unit"><div id="minutes" class="time-num">0</div><div class="time-label">دقيقة</div></div>
                     <div class="time-unit"><div id="seconds" class="time-num">0</div><div class="time-label">ثانية</div></div>
                 </div>
-                <p style="font-size: 13px; font-weight: bold; color: #883955; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
+                <p style="font-size: 13px; font-weight: bold; color: #ff8fa3; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
             <div class="custom-audio-player" onclick="togglePlay()">
@@ -280,32 +292,30 @@
                 <source src="amr_diab.mp3" type="audio/mpeg">
             </audio>
 
-            <!-- الفيديو (صامت ويعمل تلقائياً) -->
-            <div class="memory-item">
-                <video autoplay muted loop playsinline preload="auto">
-                    <source src="video1.mp4" type="video/mp4">
-                    متصفحك لا يدعم عرض الفيديو
-                </video>
-            </div>
-
+            <!-- الصور مرتبة تحت بعضها بدون فيديو -->
             <div class="memory-item">
                 <img src="photo1.jpg" alt="Photo 1">
+                <div class="memory-content">ذكرياتنا الجميلة ❤️</div>
             </div>
 
             <div class="memory-item">
                 <img src="photo2.jpg" alt="Photo 2">
+                <div class="memory-content">ضحكتك بالدنيا ✨</div>
             </div>
 
             <div class="memory-item">
                 <img src="photo3.jpg" alt="Photo 3">
+                <div class="memory-content">أجمل الأيام 🌸</div>
             </div>
 
             <div class="memory-item">
                 <img src="photo4.jpg" alt="Photo 4">
+                <div class="memory-content">مع بعض دايماً ♾️</div>
             </div>
 
             <div class="memory-item">
                 <img src="photo5.jpg" alt="Photo 5">
+                <div class="memory-content">عمرى كله ❤️</div>
             </div>
 
         </div>
@@ -351,17 +361,10 @@
             document.getElementById('messageStep').classList.add('hidden');
             document.getElementById('mainContent').classList.remove('hidden');
             
-            // تشغيل الموسيقى وضمان عمل الفيديو فوراً عند الانتقال
             music.play().then(() => {
                 playIcon.innerText = "⏸";
-                audioStatus.innerText, audioStatus.innerText = "Playing";
+                audioStatus.innerText = "Playing";
             }).catch(e => console.log(e));
-
-            // إعادة تشغيل الفيديو للتأكيد
-            const vid = document.querySelector('video');
-            if(vid) {
-                vid.play().catch(err => console.log("Video autoplay blocked"));
-            }
 
             startTimer();
         }
