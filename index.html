@@ -26,14 +26,14 @@
             position: relative;
         }
 
-        /* الخلفية الرئيسية للظل بوضوح تام */
+        /* الخلفية الرئيسية تظهر بوضوح تام بدون أي عتمة أو ظل رمادي */
         body.main-bg {
             background: url('bg_main.jpg') no-repeat center center fixed !important;
             background-size: cover !important;
             color: #4a2e35;
         }
 
-        /* تساقط القلوب على الشاشة بالكامل فوق كل العناصر */
+        /* تساقط القلوب على الشاشة بالكامل */
         .falling-heart {
             position: fixed;
             top: -10px;
@@ -66,14 +66,14 @@
             margin-bottom: 70px;
         }
 
-        /* إزالة الكروت الرمادية وتخلي الصور والعداد مباشرة على الخلفية بشكل نظيف */
+        /* إزالة الكارت الرئيسي الرمادي تماماً من بعد الباسورد لتظهر الخلفية الأصلية */
         body.main-bg .container {
-            background: transparent;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border: none;
-            box-shadow: none;
-            overflow: visible;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            overflow: visible !important;
         }
 
         body.main-bg .counter-box {
@@ -104,7 +104,7 @@
             text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
         }
 
-        /* جعل الصور مباشرة على الخلفية بدون أي كروت رمادية أو خلفيات تحتها */
+        /* الصور مباشرة على الخلفية بدون كروت رمادية */
         body.main-bg .memory-item {
             background: transparent !important;
             backdrop-filter: none !important;
@@ -191,15 +191,15 @@
             padding: 10px;
         }
 
-        /* كارت الرسالة صلب وغير شفاف عشان الكلام يظهر بوضوح تام وزاهي */
+        /* كارت الرسالة بدون الحواف الرمادية وبشكل متناسق مع الخلفية مباشرة */
         .message-card {
-            background: #fff5f7;
-            backdrop-filter: none;
+            background: rgba(255, 245, 247, 0.92);
+            backdrop-filter: blur(8px);
             border-radius: 20px;
             padding: 22px;
             margin: 15px 0;
-            border: 2px solid rgba(255, 182, 193, 0.8);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1.5px solid rgba(255, 182, 193, 0.7);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             line-height: 2.2;
             text-align: right;
             font-size: 14px;
@@ -327,7 +327,7 @@
             color: #b83b5e;
         }
 
-        /* صندوق الرسائل السرية في النهاية بين قلبين */
+        /* صندوق الرسائل السرية بين قلبين */
         .secret-box {
             background: rgba(255, 240, 243, 0.9);
             border: 1.5px solid rgba(255, 182, 193, 0.8);
@@ -349,7 +349,7 @@
             margin-top: 5px;
         }
 
-        /* الـ 14 صورة في قوالب العرض الأساسية */
+        /* الـ 14 صورة بدون كروت */
         .memory-item {
             position: relative;
             border-radius: 15px;
@@ -442,7 +442,7 @@
                 <p style="font-size: 13px; font-weight: bold; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
-            <!-- الـ 14 صورة بدون كروت -->
+            <!-- الـ 14 صورة -->
             <div class="memory-item"><img src="photo1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo2.jpg" alt="Photo 2" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo3.jpg" alt="Photo 3" onclick="openLightbox(this.src)"></div>
@@ -458,7 +458,7 @@
             <div class="memory-item"><img src="photo13.jpg" alt="Photo 13" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo14.jpg" alt="Photo 14" onclick="openLightbox(this.src)"></div>
 
-            <!-- صندوق الرسائل السرية بين قلبين -->
+            <!-- صندوق الرسائل السرية -->
             <div class="secret-box" onclick="showRandomSecret()">
                 <p style="font-size: 13px; font-weight: bold;">❤️ ✨ اضغط هنا لمفاجأة سرية ✨ ❤️</p>
                 <div id="secretMessage" class="secret-text">اضغط لاكتشاف رسالة حب جديدة..</div>
@@ -516,7 +516,6 @@
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        // تساقط القلوب على الشاشة بالكامل
         function createFallingHeart() {
             const heart = document.createElement('div');
             heart.classList.add('falling-heart');
