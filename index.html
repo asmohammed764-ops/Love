@@ -271,18 +271,19 @@
                 <p style="font-size: 13px; font-weight: bold; color: #ff8fa3; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
+            <!-- زر المشغل -->
             <div class="custom-audio-player" onclick="togglePlay()">
                 <div class="play-btn-circle" id="playIcon">▶</div>
                 <div class="audio-info">
                     <div class="audio-title">Amr Diab</div>
-                    <div class="audio-status" id="audioStatus">Paused</div>
+                    <div class="audio-status" id="audioStatus">Click to Play</div>
                 </div>
             </div>
             <audio id="bgMusic" loop preload="auto">
                 <source src="amr_diab.mp3" type="audio/mpeg">
             </audio>
 
-            <!-- الـ 14 صورة -->
+            <!-- الـ 14 صورة بدون كلام -->
             <div class="memory-item"><img src="photo1.jpg" alt="Photo 1"></div>
             <div class="memory-item"><img src="photo2.jpg" alt="Photo 2"></div>
             <div class="memory-item"><img src="photo3.jpg" alt="Photo 3"></div>
@@ -311,14 +312,14 @@
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             if (input === correctPassword) {
-                // محاولة تشغيل الصوت فور كتابة الباسورد الصحيح
+                document.getElementById('lockScreen').classList.add('hidden');
+                document.getElementById('messageStep').classList.remove('hidden');
+                
+                // تشغيل مبدئي للصوت عند كتابة الباسورد الصحيح
                 music.play().then(() => {
                     playIcon.innerText = "⏸";
                     audioStatus.innerText = "Playing";
-                }).catch(e => console.log("Waiting interaction"));
-
-                document.getElementById('lockScreen').classList.add('hidden');
-                document.getElementById('messageStep').classList.remove('hidden');
+                }).catch(e => console.log("Waiting click"));
             }
         }
 
@@ -336,12 +337,12 @@
         }
 
         function goToMainContent() {
-            // تشغيل اجباري للصوت عند الضغط على زر Next لتجاوز حماية المتصفح
+            // تشغيل اجباري للصوت عند الضغط على زر Next
             music.play().then(() => {
                 playIcon.innerText = "⏸";
                 audioStatus.innerText = "Playing";
             }).catch(e => {
-                console.log("Audio blocked", e);
+                console.log("Audio block handled", e);
             });
 
             document.body.classList.add('main-bg');
