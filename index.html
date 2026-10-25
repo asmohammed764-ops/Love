@@ -216,6 +216,7 @@
             color: #ddd;
         }
 
+        /* كارت الصور نقي وبدون أي كلام خالص تحته */
         .memory-item {
             position: relative;
             border-radius: 15px;
@@ -271,23 +272,33 @@
                 <p style="font-size: 13px; font-weight: bold; color: #ff8fa3; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
+            <!-- مشغل الأغنية (زر واضح للتشغيل اليدوي والتلقائي) -->
             <div class="custom-audio-player" onclick="togglePlay()">
                 <div class="play-btn-circle" id="playIcon">▶</div>
                 <div class="audio-info">
                     <div class="audio-title">Amr Diab</div>
-                    <div class="audio-status" id="audioStatus">Paused</div>
+                    <div class="audio-status" id="audioStatus">Click to Play</div>
                 </div>
             </div>
             <audio id="bgMusic" loop preload="auto">
                 <source src="amr_diab.mp3" type="audio/mpeg">
             </audio>
 
-            <!-- الصور مرتبة تحت بعضها -->
+            <!-- الـ 14 صورة مرتبة تحت بعضها بدون أي كلام خالص -->
             <div class="memory-item"><img src="photo1.jpg" alt="Photo 1"></div>
             <div class="memory-item"><img src="photo2.jpg" alt="Photo 2"></div>
             <div class="memory-item"><img src="photo3.jpg" alt="Photo 3"></div>
             <div class="memory-item"><img src="photo4.jpg" alt="Photo 4"></div>
             <div class="memory-item"><img src="photo5.jpg" alt="Photo 5"></div>
+            <div class="memory-item"><img src="photo6.jpg" alt="Photo 6"></div>
+            <div class="memory-item"><img src="photo7.jpg" alt="Photo 7"></div>
+            <div class="memory-item"><img src="photo8.jpg" alt="Photo 8"></div>
+            <div class="memory-item"><img src="photo9.jpg" alt="Photo 9"></div>
+            <div class="memory-item"><img src="photo10.jpg" alt="Photo 10"></div>
+            <div class="memory-item"><img src="photo11.jpg" alt="Photo 11"></div>
+            <div class="memory-item"><img src="photo12.jpg" alt="Photo 12"></div>
+            <div class="memory-item"><img src="photo13.jpg" alt="Photo 13"></div>
+            <div class="memory-item"><img src="photo14.jpg" alt="Photo 14"></div>
 
         </div>
     </div>
@@ -303,17 +314,14 @@
             const input = document.getElementById('passwordInput').value;
             if (input === correctPassword) {
                 document.getElementById('lockScreen').classList.add('hidden');
-                document.getElementById('messageStep').classList.add('hidden');
-                document.getElementById('mainContent').classList.remove('hidden');
-                document.body.classList.add('main-bg');
-                startTimer();
-
-                // تشغيل الأغنية فوراً عند إدخال الباسورد الصحيح
+                document.getElementById('messageStep').classList.remove('hidden');
+                
+                // محاولة تشغيل الصوت في الخلفية
                 music.play().then(() => {
                     playIcon.innerText = "⏸";
                     audioStatus.innerText = "Playing";
-                }).catch(error => {
-                    console.log("Autoplay blocked, waiting for user click on player");
+                }).catch(e => {
+                    console.log("Autoplay waiting for click");
                 });
             }
         }
@@ -336,10 +344,13 @@
             document.getElementById('messageStep').classList.add('hidden');
             document.getElementById('mainContent').classList.remove('hidden');
             
+            // تشغيل الأغنية فور الضغط على زر next والانتقال
             music.play().then(() => {
                 playIcon.innerText = "⏸";
                 audioStatus.innerText = "Playing";
-            }).catch(e => console.log(e));
+            }).catch(e => {
+                console.log("Playback blocked");
+            });
 
             startTimer();
         }
