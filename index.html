@@ -94,21 +94,43 @@
             100% { text-shadow: 0 0 5px rgba(255,255,255,0.3); }
         }
 
+        .password-box {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
         input[type="password"] {
-            width: 80%;
+            width: 70%;
             padding: 12px;
             border: 1.5px solid rgba(255, 255, 255, 0.4);
             border-radius: 25px;
             text-align: center;
             outline: none;
             font-size: 16px;
-            margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.15);
             color: #fff;
         }
 
         input[type="password"]::placeholder {
             color: #ddd;
+        }
+
+        .submit-pass-btn {
+            background: #ff4b72;
+            color: #fff;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-pass-btn:hover {
+            background: #ff2a55;
         }
 
         #messageStep {
@@ -323,8 +345,11 @@
         <!-- 1. شاشة القفل -->
         <div id="lockScreen">
             <h2>لأغلى إنسان في عمري 🥰</h2>
-            <input type="password" id="passwordInput" placeholder="كلمة السر..." oninput="checkPassword()">
-            <p id="errorMsg" style="color: #ff8fa3; font-size: 12px; margin-top: 5px; display: none;">كلمة السر غير صحيحة!</p>
+            <div class="password-box">
+                <input type="password" id="passwordInput" placeholder="كلمة السر...">
+                <button class="submit-pass-btn" onclick="checkPassword()">دخول ➔</button>
+            </div>
+            <p id="errorMsg" style="color: #ff8fa3; font-size: 12px; margin-top: 8px; display: none;">كلمة السر غير صحيحة، جرب مرة أخرى!</p>
         </div>
 
         <!-- 2. خطوة الرسالة -->
@@ -445,12 +470,26 @@
         setInterval(createFallingHeart, 400);
 
         function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
+            let input = document.getElementById('passwordInput').value.trim();
+            // تحويل الأرقام العربية لو وجدت إلى إنجليزية
+            input = input.replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d));
+            
+            const errorMsg = document.getElementById('errorMsg');
+
             if (input === correctPassword) {
                 document.getElementById('lockScreen').classList.add('hidden');
                 document.getElementById('messageStep').classList.remove('hidden');
+            } else {
+                errorMsg.style.display = "block";
             }
         }
+
+        // السماح بالدخول عبر الضغط على زر Enter من لوحة المفاتيح
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
 
         function togglePlay() {
             if (music.paused) {
