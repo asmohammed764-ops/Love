@@ -64,6 +64,22 @@
             margin-bottom: 70px; /* مساحة للمشغل الثابت */
         }
 
+        /* في الصفحة الرئيسية: شيل الكارت الكبير عشان الخلفية تبان واضحة */
+        body.main-bg .container {
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
+            box-shadow: none;
+            overflow: visible;
+        }
+
+        body.main-bg .forever-title,
+        body.main-bg .time-label,
+        body.main-bg .secret-box p {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
         .hidden {
             display: none !important;
         }
