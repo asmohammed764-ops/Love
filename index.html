@@ -26,9 +26,11 @@
             position: relative;
         }
 
+        /* الخلفية الرئيسية (صورة الظل) تظهر بوضوح تام وكامل من بعد الباسورد */
         body.main-bg {
             background: url('bg_main.jpg') no-repeat center center fixed !important;
             background-size: cover !important;
+            color: #4a2e35;
         }
 
         /* تساقط القلوب في الخلفية */
@@ -61,10 +63,10 @@
             padding: 25px 20px;
             position: relative;
             z-index: 2;
-            margin-bottom: 70px; /* مساحة للمشغل الثابت */
+            margin-bottom: 70px;
         }
 
-        /* في الصفحة الرئيسية: شيل الكارت الكبير عشان الخلفية تبان واضحة */
+        /* جعل عناصر الصفحة الرئيسية شفافة وناعمة عشان خلفية الظل تبان بملامحها ورا الصور وأنتِ بتسكري */
         body.main-bg .container {
             background: transparent;
             backdrop-filter: none;
@@ -74,38 +76,51 @@
             overflow: visible;
         }
 
-        /* شيل الكروت الصغيرة كمان عشان ملامح الخلفية تبان */
         body.main-bg .counter-box {
-            background: transparent;
-            border: none;
-            box-shadow: none;
-        }
-
-        body.main-bg .time-unit {
-            background: rgba(0, 0, 0, 0.25);
-        }
-
-        body.main-bg .memory-item {
-            background: transparent;
-            border: none;
-            padding: 0;
-            overflow: visible;
-        }
-
-        body.main-bg .memory-item img {
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-        }
-
-        body.main-bg .secret-box {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         body.main-bg .counter-box p,
-        body.main-bg .forever-title,
         body.main-bg .time-label,
         body.main-bg .secret-box p {
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            color: #4a2e35 !important;
+            text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
+        }
+
+        body.main-bg .time-unit {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        body.main-bg .time-num {
+            color: #881b3a !important;
+        }
+
+        body.main-bg .forever-title {
+            color: #881b3a !important;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
+        }
+
+        body.main-bg .memory-item {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body.main-bg .secret-box {
+            background: rgba(255, 240, 243, 0.6);
+            border: 1px solid rgba(255, 182, 193, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        body.main-bg .secret-text {
+            color: #881b3a !important;
         }
 
         .hidden {
@@ -167,16 +182,18 @@
         }
 
         .message-card {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(255, 245, 247, 0.8);
+            backdrop-filter: blur(6px);
             border-radius: 20px;
             padding: 20px;
             margin: 15px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1.5px solid rgba(255, 182, 193, 0.6);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             line-height: 2.2;
             text-align: right;
             font-size: 14px;
-            color: #fff;
+            color: #4a2e35;
+            font-weight: 600;
         }
 
         .fade-line {
@@ -200,21 +217,21 @@
         }
 
         .next-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #881b3a, #b83b5e);
             color: #fff;
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            border: none;
             padding: 10px 30px;
             border-radius: 25px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(136, 27, 58, 0.3);
             transition: 0.3s;
             margin-top: 15px;
         }
 
         .next-btn:hover {
-            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
         }
 
         .counter-box {
@@ -248,7 +265,7 @@
             color: #ddd;
         }
 
-        /* مشغل الصوت الثابت (Floating Player) */
+        /* مشغل الصوت الثابت العائم */
         .floating-audio-player {
             position: fixed;
             bottom: 15px;
@@ -256,14 +273,14 @@
             transform: translateX(-50%);
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 240, 243, 0.9);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1.5px solid rgba(255, 182, 193, 0.6);
             border-radius: 40px;
             padding: 8px 15px;
             cursor: default;
             pointer-events: none;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             z-index: 999;
             width: 90%;
             max-width: 340px;
@@ -272,7 +289,7 @@
         .play-btn-circle {
             width: 38px;
             height: 38px;
-            background: #93334ea1;
+            background: #881b3a;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -291,12 +308,12 @@
         .audio-title {
             font-size: 13px;
             font-weight: bold;
-            color: #fff;
+            color: #4a2e35;
         }
 
         .audio-status {
             font-size: 11px;
-            color: #ffccd5;
+            color: #b83b5e;
         }
 
         /* صندوق الرسائل السرية في النهاية */
@@ -388,7 +405,7 @@
         <!-- 2. خطوة الرسالة -->
         <div id="messageStep" class="hidden">
             <div class="message-card">
-                <div class="fade-line" style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #ff8fa3; direction: ltr;">01/11/2026</div>
+                <div class="fade-line" style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #b83b5e; direction: ltr;">01/11/2026</div>
                 <div class="fade-line">إلَى حَبِيبِي وَرَفِيقِ عُمْرِي ..</div>
                 <div class="fade-line">فِي يَوْمِ مِيلَادِكَ، أَتَمَنَّى لَكَ أَعْوَاماً مَلِيئَةً بِالْفَرَحِ، وَقَلْباً لَا يَعْرِفُ الْحُزْنَ، وَأَيَّاماً تُشْبِهُ جَمَالَ رُوحِكَ.</div>
                 <div class="fade-line">أَتَمَنَّى أَنْ تَبْقَى ضِحْكَتُكَ حَاضِرَةً، وَأَحْلَامُكَ حَقِيقَةً، وَأَنْ أَكُونَ دَائِماً جُزْءاً مِنْ سَعَادَتِكَ.</div>
@@ -403,14 +420,14 @@
             <div class="forever-title">❤️ Forever ❤️</div>
 
             <div class="counter-box">
-                <p style="font-size: 13px; font-weight: bold; color: #fff;">Since: 20 - 01 - 2025 ❤️</p>
+                <p style="font-size: 13px; font-weight: bold;">Since: 20 - 01 - 2025 ❤️</p>
                 <div class="timer">
                     <div class="time-unit"><div id="days" class="time-num">0</div><div class="time-label">يوم</div></div>
                     <div class="time-unit"><div id="hours" class="time-num">0</div><div class="time-label">ساعة</div></div>
                     <div class="time-unit"><div id="minutes" class="time-num">0</div><div class="time-label">دقيقة</div></div>
                     <div class="time-unit"><div id="seconds" class="time-num">0</div><div class="time-label">ثانية</div></div>
                 </div>
-                <p style="font-size: 13px; font-weight: bold; color: #ff8fa3; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
+                <p style="font-size: 13px; font-weight: bold; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
             <!-- الـ 14 صورة -->
@@ -431,13 +448,13 @@
 
             <!-- صندوق الرسائل السرية في النهاية -->
             <div class="secret-box" onclick="showRandomSecret()">
-                <p style="font-size: 12px; color: #fff; font-weight: bold;">✨ اضغط هنا لمفاجأة سرية ✨</p>
+                <p style="font-size: 12px; font-weight: bold;">✨ اضغط هنا لمفاجأة سرية ✨</p>
                 <div id="secretMessage" class="secret-text">اضغط لاكتشاف رسالة حب جديدة..</div>
             </div>
         </div>
     </div>
 
-    <!-- مشغل الصوت الثابت العائم (بيظهر تحت بعد الباسورد) -->
+    <!-- مشغل الصوت الثابت العائم -->
     <div id="floatingPlayer" class="floating-audio-player hidden">
         <div class="play-btn-circle" id="playIcon">🎵</div>
         <div class="audio-info">
@@ -506,15 +523,12 @@
 
         setInterval(createFallingHeart, 400);
 
-        // "فتح" الصوت أول ما تلمس أو تكتب أي حاجة في الصفحة،
-        // عشان المتصفح يسمح بتشغيل الأغنية فوراً لما الباسورد يصح
         let audioUnlocked = false;
         function unlockAudio() {
             if (audioUnlocked) return;
             audioUnlocked = true;
             music.muted = true;
             music.play().then(() => {
-                // لو الباسورد اتكتب صح قبل ما الفتح يخلص، سيب الأغنية شغالة
                 if (!floatingPlayer.classList.contains('hidden')) {
                     music.muted = false;
                 } else {
@@ -531,7 +545,6 @@
             document.addEventListener(evt, unlockAudio, { once: false, passive: true });
         });
 
-        // تشغيل الأغنية (لو شغالة أصلاً مش بيعمل حاجة)
         function startMusic() {
             if (music.paused) {
                 music.muted = false;
@@ -541,7 +554,6 @@
             }
         }
 
-        // لو المتصفح منع التشغيل، أول لمسة بعد الباسورد تشغّلها
         ['pointerdown', 'touchstart', 'keydown'].forEach(evt => {
             document.addEventListener(evt, () => {
                 if (!floatingPlayer.classList.contains('hidden')) startMusic();
@@ -557,7 +569,6 @@
             if (input === correctPassword) {
                 document.getElementById('lockScreen').classList.add('hidden');
                 document.getElementById('messageStep').classList.remove('hidden');
-                // إظهار المشغل وتشغيل الأغنية فور صحة الباسورد
                 floatingPlayer.classList.remove('hidden');
                 startMusic();
             } else if (input.length >= 7) {
@@ -568,13 +579,10 @@
         }
 
         function goToMainContent() {
-            // لو المتصفح منع التشغيل التلقائي، بنحاول تاني هنا
             startMusic();
-
             document.body.classList.add('main-bg');
             document.getElementById('messageStep').classList.add('hidden');
             document.getElementById('mainContent').classList.remove('hidden');
-
             startTimer();
         }
 
