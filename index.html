@@ -61,6 +61,7 @@
             padding: 25px 20px;
             position: relative;
             z-index: 2;
+            margin-bottom: 70px; /* مساحة للمشغل الثابت */
         }
 
         .hidden {
@@ -203,34 +204,43 @@
             color: #ddd;
         }
 
-        .custom-audio-player {
+        /* مشغل الصوت الثابت (Floating Player) زي الصورة تماماً */
+        .floating-audio-player {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 40px;
-            padding: 10px 15px;
-            margin: 15px 0;
+            padding: 8px 15px;
             cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            width: 90%;
+            max-width: 340px;
             transition: 0.3s;
         }
 
-        .custom-audio-player:hover {
-            background: rgba(0, 0, 0, 0.7);
+        .floating-audio-player:hover {
+            background: rgba(255, 255, 255, 0.35);
         }
 
         .play-btn-circle {
-            width: 42px;
-            height: 42px;
-            background: #ff4b72;
+            width: 38px;
+            height: 38px;
+            background: #93334ea1;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             flex-shrink: 0;
-            margin-left: 12px;
+            margin-left: 10px;
         }
 
         .audio-info {
@@ -239,14 +249,14 @@
         }
 
         .audio-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             color: #fff;
         }
 
         .audio-status {
             font-size: 11px;
-            color: #ff8fa3;
+            color: #ffccd5;
         }
 
         /* صندوق الرسائل السرية في النهاية */
@@ -304,7 +314,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 999;
+            z-index: 1000;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -363,18 +373,6 @@
                 <p style="font-size: 13px; font-weight: bold; color: #ff8fa3; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
-            <!-- مشغل الصوت MP3 -->
-            <div class="custom-audio-player" onclick="togglePlay()">
-                <div class="play-btn-circle" id="playIcon">▶</div>
-                <div class="audio-info">
-                    <div class="audio-title">Amr Diab - أغنيتنا المفضلة</div>
-                    <div class="audio-status" id="audioStatus">اضغط هنا لتشغيل الأغنية 🎵</div>
-                </div>
-            </div>
-            <audio id="bgMusic" loop preload="auto">
-                <source src="amr_diab.mp3" type="audio/mpeg">
-            </audio>
-
             <!-- الـ 14 صورة -->
             <div class="memory-item"><img src="photo1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo2.jpg" alt="Photo 2" onclick="openLightbox(this.src)"></div>
@@ -396,9 +394,21 @@
                 <p style="font-size: 12px; color: #fff; font-weight: bold;">✨ اضغط هنا لمفاجأة سرية ✨</p>
                 <div id="secretMessage" class="secret-text">اضغط لاكتشاف رسالة حب جديدة..</div>
             </div>
-
         </div>
     </div>
+
+    <!-- مشغل الصوت الثابت العائم (بيظهر تحت في كل الصفحات بعد الدخول) -->
+    <div id="floatingPlayer" class="floating-audio-player hidden" onclick="togglePlay()">
+        <div class="play-btn-circle" id="playIcon">▶</div>
+        <div class="audio-info">
+            <div class="audio-title">Amr Diab - عايش معاك</div>
+            <div class="audio-status" id="audioStatus">Paused ⏸️</div>
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop preload="auto">
+        <source src="amr_diab.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- نافذة تكبير الصورة -->
     <div id="lightbox" onclick="closeLightbox()">
@@ -411,8 +421,9 @@
         const music = document.getElementById('bgMusic');
         const playIcon = document.getElementById('playIcon');
         const audioStatus = document.getElementById('audioStatus');
+        const floatingPlayer = document.getElementById('floatingPlayer');
 
-        // الرسائل السرية بصيغة المذكر[cite: 4, 5, 6, 7, 8, 9]
+        // الرسائل السرية بصيغة المذكر
         const secrets = [
             "بحبك كأنك أماني الوحيد في الدنيا دي كلها ❤️",
             "أنت السند والحب اللي بتمنى أعيش معاه العمر كله ❤️",
@@ -463,6 +474,8 @@
             if (input === correctPassword) {
                 document.getElementById('lockScreen').classList.add('hidden');
                 document.getElementById('messageStep').classList.remove('hidden');
+                // إظهار مشغل الأغنية الثابت فور الدخول
+                floatingPlayer.classList.remove('hidden');
             } else if (input.length >= 7) {
                 errorMsg.style.display = "block";
             } else {
@@ -477,7 +490,6 @@
                     audioStatus.innerText = "Playing Now 🎶";
                 }).catch(e => {
                     console.log(e);
-                    alert("برجاء التأكد من رفع ملف الصوت باسم amr_diab.mp3 في نفس مجلد الموقع");
                 });
             } else {
                 music.pause();
@@ -501,6 +513,7 @@
             startTimer();
         }
 
+        // العداد الزمني
         function startTimer() {
             setInterval(() => {
                 const now = new Date();
