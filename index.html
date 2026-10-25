@@ -216,7 +216,6 @@
             color: #ddd;
         }
 
-        /* كارت الصور الداكن ونفس الستايل */
         .memory-item {
             position: relative;
             border-radius: 15px;
@@ -232,15 +231,6 @@
             border-radius: 12px;
             display: block;
         }
-
-        .memory-content {
-            margin-top: 8px;
-            color: #fff;
-            font-weight: bold;
-            font-size: 15px;
-            text-align: center;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
     </style>
 </head>
 <body>
@@ -253,7 +243,7 @@
             <p id="errorMsg" style="color: #ff8fa3; font-size: 12px; margin-top: 5px; display: none;">كلمة السر غير صحيحة!</p>
         </div>
 
-        <!-- 2. خطوة الرسالة (بنفس الستايل الداكن المريح) -->
+        <!-- 2. خطوة الرسالة -->
         <div id="messageStep" class="hidden">
             <div class="message-card">
                 <div class="fade-line" style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #ff8fa3; direction: ltr;">01/11/2026</div>
@@ -266,9 +256,9 @@
             <button class="next-btn" onclick="goToMainContent()">next ➔</button>
         </div>
 
-        <!-- 3. الصفحة الرئيسية (الصور بدون فيديو) -->
+        <!-- 3. الصفحة الرئيسية -->
         <div id="mainContent" class="hidden">
-            <div class="forever-title">✨ Forever ✨</div>
+            <div class="forever-title">❤️ Forever ❤️</div>
 
             <div class="counter-box">
                 <p style="font-size: 13px; font-weight: bold; color: #fff;">Since: 20 - 01 - 2025 ❤️</p>
@@ -282,41 +272,22 @@
             </div>
 
             <div class="custom-audio-player" onclick="togglePlay()">
-                <div class="play-btn-circle" id="playIcon">⏸</div>
+                <div class="play-btn-circle" id="playIcon">▶</div>
                 <div class="audio-info">
                     <div class="audio-title">Amr Diab</div>
-                    <div class="audio-status" id="audioStatus">Playing</div>
+                    <div class="audio-status" id="audioStatus">Paused</div>
                 </div>
             </div>
             <audio id="bgMusic" loop preload="auto">
                 <source src="amr_diab.mp3" type="audio/mpeg">
             </audio>
 
-            <!-- الصور مرتبة تحت بعضها بدون فيديو -->
-            <div class="memory-item">
-                <img src="photo1.jpg" alt="Photo 1">
-                <div class="memory-content">ذكرياتنا الجميلة ❤️</div>
-            </div>
-
-            <div class="memory-item">
-                <img src="photo2.jpg" alt="Photo 2">
-                <div class="memory-content">ضحكتك بالدنيا ✨</div>
-            </div>
-
-            <div class="memory-item">
-                <img src="photo3.jpg" alt="Photo 3">
-                <div class="memory-content">أجمل الأيام 🌸</div>
-            </div>
-
-            <div class="memory-item">
-                <img src="photo4.jpg" alt="Photo 4">
-                <div class="memory-content">مع بعض دايماً ♾️</div>
-            </div>
-
-            <div class="memory-item">
-                <img src="photo5.jpg" alt="Photo 5">
-                <div class="memory-content">عمرى كله ❤️</div>
-            </div>
+            <!-- الصور مرتبة تحت بعضها -->
+            <div class="memory-item"><img src="photo1.jpg" alt="Photo 1"></div>
+            <div class="memory-item"><img src="photo2.jpg" alt="Photo 2"></div>
+            <div class="memory-item"><img src="photo3.jpg" alt="Photo 3"></div>
+            <div class="memory-item"><img src="photo4.jpg" alt="Photo 4"></div>
+            <div class="memory-item"><img src="photo5.jpg" alt="Photo 5"></div>
 
         </div>
     </div>
@@ -332,13 +303,17 @@
             const input = document.getElementById('passwordInput').value;
             if (input === correctPassword) {
                 document.getElementById('lockScreen').classList.add('hidden');
-                document.getElementById('messageStep').classList.remove('hidden');
-                
+                document.getElementById('messageStep').classList.add('hidden');
+                document.getElementById('mainContent').classList.remove('hidden');
+                document.body.classList.add('main-bg');
+                startTimer();
+
+                // تشغيل الأغنية فوراً عند إدخال الباسورد الصحيح
                 music.play().then(() => {
                     playIcon.innerText = "⏸";
                     audioStatus.innerText = "Playing";
                 }).catch(error => {
-                    console.log("Audio waiting for user interaction");
+                    console.log("Autoplay blocked, waiting for user click on player");
                 });
             }
         }
