@@ -26,28 +26,28 @@
             position: relative;
         }
 
-        /* الخلفية الرئيسية (صورة الظل) تظهر بوضوح تام وكامل من بعد الباسورد */
+        /* الخلفية الرئيسية للظل بوضوح تام */
         body.main-bg {
             background: url('bg_main.jpg') no-repeat center center fixed !important;
             background-size: cover !important;
             color: #4a2e35;
         }
 
-        /* تساقط القلوب في الخلفية */
+        /* تساقط القلوب على الشاشة بالكامل فوق كل العناصر */
         .falling-heart {
-            position: absolute;
+            position: fixed;
             top: -10px;
-            color: rgba(255, 105, 135, 0.7);
+            color: rgba(255, 105, 135, 0.8);
             font-size: 16px;
             user-select: none;
             pointer-events: none;
             animation: fall linear forwards;
-            z-index: 1;
+            z-index: 9999;
         }
 
         @keyframes fall {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
 
         .container {
@@ -66,7 +66,7 @@
             margin-bottom: 70px;
         }
 
-        /* جعل عناصر الصفحة الرئيسية شفافة وناعمة عشان خلفية الظل تبان بملامحها ورا الصور وأنتِ بتسكري */
+        /* إزالة الكروت الرمادية وتخلي الصور والعداد مباشرة على الخلفية بشكل نظيف */
         body.main-bg .container {
             background: transparent;
             backdrop-filter: none;
@@ -77,22 +77,22 @@
         }
 
         body.main-bg .counter-box {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(255, 182, 193, 0.6);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         body.main-bg .counter-box p,
         body.main-bg .time-label,
         body.main-bg .secret-box p {
             color: #4a2e35 !important;
-            text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8) !important;
+            text-shadow: none !important;
         }
 
         body.main-bg .time-unit {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 192, 203, 0.8);
         }
 
         body.main-bg .time-num {
@@ -104,19 +104,29 @@
             text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
         }
 
+        /* جعل الصور مباشرة على الخلفية بدون أي كروت رمادية أو خلفيات تحتها */
         body.main-bg .memory-item {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            padding: 10px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background: transparent !important;
+            backdrop-filter: none !important;
+            border: none !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            margin-bottom: 20px;
+        }
+
+        body.main-bg .memory-item img {
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            display: block;
         }
 
         body.main-bg .secret-box {
-            background: rgba(255, 240, 243, 0.6);
-            border: 1px solid rgba(255, 182, 193, 0.7);
+            background: rgba(255, 240, 243, 0.9);
+            border: 1.5px solid rgba(255, 182, 193, 0.8);
             backdrop-filter: blur(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
 
         body.main-bg .secret-text {
@@ -181,14 +191,15 @@
             padding: 10px;
         }
 
+        /* كارت الرسالة صلب وغير شفاف عشان الكلام يظهر بوضوح تام وزاهي */
         .message-card {
-            background: rgba(255, 245, 247, 0.8);
-            backdrop-filter: blur(6px);
+            background: #fff5f7;
+            backdrop-filter: none;
             border-radius: 20px;
-            padding: 20px;
+            padding: 22px;
             margin: 15px 0;
-            border: 1.5px solid rgba(255, 182, 193, 0.6);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(255, 182, 193, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             line-height: 2.2;
             text-align: right;
             font-size: 14px;
@@ -273,15 +284,15 @@
             transform: translateX(-50%);
             display: flex;
             align-items: center;
-            background: rgba(255, 240, 243, 0.9);
+            background: rgba(255, 240, 243, 0.95);
             backdrop-filter: blur(12px);
-            border: 1.5px solid rgba(255, 182, 193, 0.6);
+            border: 1.5px solid rgba(255, 182, 193, 0.8);
             border-radius: 40px;
             padding: 8px 15px;
             cursor: default;
             pointer-events: none;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            z-index: 999;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
             width: 90%;
             max-width: 340px;
         }
@@ -316,10 +327,10 @@
             color: #b83b5e;
         }
 
-        /* صندوق الرسائل السرية في النهاية */
+        /* صندوق الرسائل السرية في النهاية بين قلبين */
         .secret-box {
-            background: rgba(255, 105, 135, 0.15);
-            border: 1px solid rgba(255, 105, 135, 0.4);
+            background: rgba(255, 240, 243, 0.9);
+            border: 1.5px solid rgba(255, 182, 193, 0.8);
             border-radius: 15px;
             padding: 15px;
             margin-top: 20px;
@@ -328,16 +339,17 @@
             transition: 0.3s;
         }
         .secret-box:hover {
-            background: rgba(255, 105, 135, 0.3);
+            background: rgba(255, 220, 228, 0.95);
+            transform: scale(1.02);
         }
         .secret-text {
             font-size: 13px;
-            color: #ff8fa3;
+            color: #881b3a;
             font-weight: bold;
             margin-top: 5px;
         }
 
-        /* الـ 14 صورة مع إمكانية التكبير */
+        /* الـ 14 صورة في قوالب العرض الأساسية */
         .memory-item {
             position: relative;
             border-radius: 15px;
@@ -371,7 +383,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 10000;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -430,7 +442,7 @@
                 <p style="font-size: 13px; font-weight: bold; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
-            <!-- الـ 14 صورة -->
+            <!-- الـ 14 صورة بدون كروت -->
             <div class="memory-item"><img src="photo1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo2.jpg" alt="Photo 2" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo3.jpg" alt="Photo 3" onclick="openLightbox(this.src)"></div>
@@ -446,9 +458,9 @@
             <div class="memory-item"><img src="photo13.jpg" alt="Photo 13" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo14.jpg" alt="Photo 14" onclick="openLightbox(this.src)"></div>
 
-            <!-- صندوق الرسائل السرية في النهاية -->
+            <!-- صندوق الرسائل السرية بين قلبين -->
             <div class="secret-box" onclick="showRandomSecret()">
-                <p style="font-size: 12px; font-weight: bold;">✨ اضغط هنا لمفاجأة سرية ✨</p>
+                <p style="font-size: 13px; font-weight: bold;">❤️ ✨ اضغط هنا لمفاجأة سرية ✨ ❤️</p>
                 <div id="secretMessage" class="secret-text">اضغط لاكتشاف رسالة حب جديدة..</div>
             </div>
         </div>
@@ -481,7 +493,6 @@
         const floatingPlayer = document.getElementById('floatingPlayer');
         let timerStarted = false;
 
-        // الرسائل السرية بصيغة المذكر
         const secrets = [
             "بحبك كأنك أماني الوحيد في الدنيا دي كلها ❤️",
             "أنت السند والحب اللي بتمنى أعيش معاه العمر كله ❤️",
@@ -496,7 +507,6 @@
             document.getElementById('secretMessage').innerText = secrets[randomIndex];
         }
 
-        // تكبير الصور
         function openLightbox(src) {
             document.getElementById('lightboxImg').src = src;
             document.getElementById('lightbox').classList.add('active');
@@ -506,7 +516,7 @@
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        // تساقط القلوب في الخلفية
+        // تساقط القلوب على الشاشة بالكامل
         function createFallingHeart() {
             const heart = document.createElement('div');
             heart.classList.add('falling-heart');
@@ -521,7 +531,7 @@
             }, 6000);
         }
 
-        setInterval(createFallingHeart, 400);
+        setInterval(createFallingHeart, 350);
 
         let audioUnlocked = false;
         function unlockAudio() {
@@ -586,7 +596,6 @@
             startTimer();
         }
 
-        // العداد الزمني
         function startTimer() {
             if (timerStarted) return;
             timerStarted = true;
