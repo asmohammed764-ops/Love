@@ -84,8 +84,7 @@
         }
 
         body.main-bg .counter-box p,
-        body.main-bg .time-label,
-        body.main-bg .secret-box p {
+        body.main-bg .time-label {
             color: #4a2e35 !important;
             text-shadow: none !important;
         }
@@ -120,19 +119,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.8);
             display: block;
-        }
-
-        body.main-bg .secret-box {
-            background: rgba(255, 240, 243, 0.9);
-            border: 1.5px solid rgba(255, 182, 193, 0.8);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        body.main-bg .secret-text {
-            color: #881b3a !important;
-            white-space: pre-line;
-            line-height: 1.8;
         }
 
         .hidden {
@@ -329,29 +315,53 @@
             color: #b83b5e;
         }
 
-        /* صندوق الرسائل السرية بين قلبين */
+        /* الشكل الجديد للرسائل السرية: بطاقة حب رقيقة مع نبض خفيف */
         .secret-box {
-            background: rgba(255, 240, 243, 0.9);
-            border: 1.5px solid rgba(255, 182, 193, 0.8);
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            background: linear-gradient(135deg, rgba(255, 230, 235, 0.95), rgba(255, 245, 247, 0.95));
+            border: 2px dashed rgba(219, 112, 147, 0.6);
+            border-radius: 20px;
+            padding: 18px;
+            margin-top: 25px;
+            margin-bottom: 15px;
             cursor: pointer;
-            transition: 0.3s;
-        }
-        .secret-box:hover {
-            background: rgba(255, 220, 228, 0.95);
-            transform: scale(1.02);
-        }
-        .secret-text {
-            font-size: 13px;
-            color: #881b3a;
-            font-weight: bold;
-            margin-top: 5px;
+            box-shadow: 0 8px 25px rgba(219, 112, 147, 0.2);
+            transition: all 0.3s ease;
+            animation: softPulse 2.5s infinite;
         }
 
-        /* الـ 30 صورة بدون كروت */
+        .secret-box:hover {
+            transform: scale(1.03);
+            background: linear-gradient(135deg, rgba(255, 220, 228, 0.98), rgba(255, 235, 240, 0.98));
+            border-color: #b83b5e;
+            box-shadow: 0 12px 30px rgba(184, 59, 94, 0.3);
+        }
+
+        @keyframes softPulse {
+            0% { box-shadow: 0 0 0 0 rgba(219, 112, 147, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(219, 112, 147, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(219, 112, 147, 0); }
+        }
+
+        .secret-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #881b3a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .secret-text {
+            font-size: 13px;
+            color: #5c3a42;
+            font-weight: 600;
+            line-height: 1.6;
+            padding: 4px 8px;
+        }
+
+        /* الـ 32 صورة بدون كروت */
         .memory-item {
             position: relative;
             border-radius: 15px;
@@ -444,7 +454,7 @@
                 <p style="font-size: 13px; font-weight: bold; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
-            <!-- الـ 30 صورة مرتبة تماماً حسب أسماء جيت هاب -->
+            <!-- الـ 32 صورة مرتبة تماماً حسب أسماء جيت هاب -->
             <div class="memory-item"><img src="photo1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo10.jpg" alt="Photo 10" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo11.jpg" alt="Photo 11" onclick="openLightbox(this.src)"></div>
@@ -469,6 +479,8 @@
             <div class="memory-item"><img src="photo29.jpg" alt="Photo 29" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo3.jpg" alt="Photo 3" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo30.jpg" alt="Photo 30" onclick="openLightbox(this.src)"></div>
+            <div class="memory-item"><img src="photo31.jpg" alt="Photo 31" onclick="openLightbox(this.src)"></div>
+            <div class="memory-item"><img src="photo32.jpg" alt="Photo 32" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo4.jpg" alt="Photo 4" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo5.jpg" alt="Photo 5" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo6.jpg" alt="Photo 6" onclick="openLightbox(this.src)"></div>
@@ -476,10 +488,10 @@
             <div class="memory-item"><img src="photo8.jpg" alt="Photo 8" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo9.jpg" alt="Photo 9" onclick="openLightbox(this.src)"></div>
 
-            <!-- صندوق الرسائل السرية -->
+            <!-- بطاقة الرسائل السرية بالشكل الجديد الأنيق -->
             <div class="secret-box" onclick="showRandomSecret()">
-                <p style="font-size: 13px; font-weight: bold;">❤️ ✨ اضغط هنا لمفاجأة سرية ✨ ❤️</p>
-                <div id="secretMessage" class="secret-text">اضغط لاكتشاف رسالة حب جديدة..</div>
+                <div class="secret-title">💌 رسالة من قلب قلبي 💌</div>
+                <div id="secretMessage" class="secret-text">اضغط هنا لاكتشاف رسالة حب جديدة.. ✨</div>
             </div>
         </div>
     </div>
@@ -588,11 +600,16 @@
             }
         }
 
-        ['pointerdown', 'touchstart', 'keydown'].forEach(evt => {
+        ['pointerdown', 'touchstart', 'keydown'].forEach, evt => {
             document.addEventListener(evt, () => {
                 if (!floatingPlayer.classList.contains('hidden')) startMusic();
             }, { passive: true });
-        });
+        };
+
+        // تصحيح بسيط لمستمع الأحداث
+        document.addEventListener('touchstart', () => {
+            if (!floatingPlayer.classList.contains('hidden')) startMusic();
+        }, { passive: true });
 
         function checkPassword() {
             let input = document.getElementById('passwordInput').value.trim();
