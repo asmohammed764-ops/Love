@@ -315,25 +315,25 @@
             color: #b83b5e;
         }
 
-        /* الشكل الجديد للرسائل السرية: بطاقة حب رقيقة مع نبض خفيف */
+        /* الشكل الجديد للرسائل السرية: بطاقة حب رقيقة مع نبض خفيف وبدون خلفية غامقة */
         .secret-box {
-            background: linear-gradient(135deg, rgba(255, 230, 235, 0.95), rgba(255, 245, 247, 0.95));
-            border: 2px dashed rgba(219, 112, 147, 0.6);
+            background: linear-gradient(135deg, rgba(255, 235, 240, 0.95), rgba(255, 245, 247, 0.95));
+            border: 2px dashed rgba(219, 112, 147, 0.7);
             border-radius: 20px;
-            padding: 18px;
+            padding: 20px;
             margin-top: 25px;
             margin-bottom: 15px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(219, 112, 147, 0.2);
+            box-shadow: 0 8px 25px rgba(219, 112, 147, 0.25);
             transition: all 0.3s ease;
             animation: softPulse 2.5s infinite;
         }
 
         .secret-box:hover {
             transform: scale(1.03);
-            background: linear-gradient(135deg, rgba(255, 220, 228, 0.98), rgba(255, 235, 240, 0.98));
+            background: linear-gradient(135deg, rgba(255, 225, 232, 0.98), rgba(255, 238, 242, 0.98));
             border-color: #b83b5e;
-            box-shadow: 0 12px 30px rgba(184, 59, 94, 0.3);
+            box-shadow: 0 12px 30px rgba(184, 59, 94, 0.35);
         }
 
         @keyframes softPulse {
@@ -346,7 +346,7 @@
             font-size: 14px;
             font-weight: bold;
             color: #881b3a;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -357,11 +357,12 @@
             font-size: 13px;
             color: #5c3a42;
             font-weight: 600;
-            line-height: 1.6;
-            padding: 4px 8px;
+            line-height: 1.8;
+            padding: 5px;
+            white-space: pre-line;
         }
 
-        /* الـ 32 صورة بدون كروت */
+        /* الـ 32 صورة */
         .memory-item {
             position: relative;
             border-radius: 15px;
@@ -454,7 +455,7 @@
                 <p style="font-size: 13px; font-weight: bold; margin-top: 12px;">الجزء الأجمل من حياتي هو أنت ❤️</p>
             </div>
 
-            <!-- الـ 32 صورة مرتبة تماماً حسب أسماء جيت هاب -->
+            <!-- الـ 32 صورة مرتبة تماماً -->
             <div class="memory-item"><img src="photo1.jpg" alt="Photo 1" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo10.jpg" alt="Photo 10" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo11.jpg" alt="Photo 11" onclick="openLightbox(this.src)"></div>
@@ -488,7 +489,7 @@
             <div class="memory-item"><img src="photo8.jpg" alt="Photo 8" onclick="openLightbox(this.src)"></div>
             <div class="memory-item"><img src="photo9.jpg" alt="Photo 9" onclick="openLightbox(this.src)"></div>
 
-            <!-- بطاقة الرسائل السرية بالشكل الجديد الأنيق -->
+            <!-- صندوق الرسائل السرية بالشكل الجديد الأنيق -->
             <div class="secret-box" onclick="showRandomSecret()">
                 <div class="secret-title">💌 رسالة من قلب قلبي 💌</div>
                 <div id="secretMessage" class="secret-text">اضغط هنا لاكتشاف رسالة حب جديدة.. ✨</div>
@@ -523,8 +524,9 @@
         const floatingPlayer = document.getElementById('floatingPlayer');
         let timerStarted = false;
 
+        /* الـ 13 عبارة سريّة كاملة ومضافة بدقة */
         const secrets = [
-            "أشعر معك بالحب وبالصداقة وبالأمان والألفة،\nأشعر معك بكل الأشياء التي تشبهني وتليق بي وتطمئن لها روحي،\nحتى إنني بقربك لا أحتاج إلى التكلف ولا إلى التجمل، أكون على طبيعتي وعلى حقيقتي كما أنا[cite: 11].\nمعك وحدك أشعر أنني وجدت من يشبهني حقاً إلى حد يجعلني أوكن أننا شخص واحد[cite: 11].",
+            "أشعر معك بالحب وبالصداقة وبالأمان والألفة،\nأشعر معك بكل الأشياء التي تشبهني وتليق بي وتطمئن لها روحي،\nحتى إنني بقربك لا أحتاج إلى التكلف ولا إلى التجمل، أكون على طبيعتي وعلى حقيقتي كما أنا[cite: 11].\nمعك وحدك أشعر أنني وجدت من يشبهني حقاً إلى حد يجعلني أوقن أننا شخص واحد[cite: 11].",
             "كل ليلة يزيد شعور الحب بقلبي لك وكل يوم أدعي ربي يديمك ويخليك لي ❤️❤️❤️[cite: 12]",
             "أنت أول شعور حقيقي، واول حب وآخر حب بقلبي أنت ❤️❤️❤️❤️[cite: 13]",
             "فكرة أنك موجود أحن حاجة ف حياتي[cite: 14]",
@@ -600,13 +602,6 @@
             }
         }
 
-        ['pointerdown', 'touchstart', 'keydown'].forEach, evt => {
-            document.addEventListener(evt, () => {
-                if (!floatingPlayer.classList.contains('hidden')) startMusic();
-            }, { passive: true });
-        };
-
-        // تصحيح بسيط لمستمع الأحداث
         document.addEventListener('touchstart', () => {
             if (!floatingPlayer.classList.contains('hidden')) startMusic();
         }, { passive: true });
